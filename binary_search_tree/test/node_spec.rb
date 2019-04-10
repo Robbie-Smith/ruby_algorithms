@@ -14,6 +14,7 @@ describe Node do
 
       expect{node.insert(nil)}.to raise_error(RuntimeError)
     end
+
     it 'adds to the right node' do
       node = Node.new(10)
       node.insert(12)
