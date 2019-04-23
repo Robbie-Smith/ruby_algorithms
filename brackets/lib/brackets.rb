@@ -2,14 +2,16 @@ class Brackets
   def balanced(str)
     stack  = []
     lookup = { '(' => ')', '[' => ']', '{' => '}', '<' => '>' }
-    left   = lookup.keys
-    right  = lookup.values
+    open   = lookup.keys
+    closed  = lookup.values
 
     str.each_char do |char|
-      if left.include? char
+      if open.include?(char)
         stack << char
-      elsif right.include? char
-        return false if stack.empty? || (lookup[stack.pop] != char)
+      elsif closed.include?(char)
+        if stack.empty? || (lookup[stack.pop] != char)
+          return false
+        end
       end
     end
 
